@@ -1,11 +1,21 @@
 var BC = {};
 
 BC.config = {
-  colors:['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722', '#795548', '#9e9e9e', '#607d8b']
+  development:false,
+  api:"",
+  frontend:""
 };
 
+if(BC.config.development){
+  BC.config.api="http://localhost:2021";
+  BC.config.frontend="http://localhost:1003";
+}else{
+  BC.config.api="https://api-potree.herokuapp.com";
+  BC.config.frontend="https://bugracoskun.github.io/potree_demo";
+}
+
 BC.api={
-  domain:"http://localhost:2021",
+  domain:BC.config.api,
   routes:{
     "addfile":"/api/addfile",
   },
@@ -64,7 +74,7 @@ function sendFile(){
     mypanel=null;
 
     var settings = {
-      "url": "http://localhost:2021/addfile",
+      "url": BC.config.api+"/addfile",
       "method": "POST",
       "timeout": 0,
       "headers": {

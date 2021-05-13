@@ -117,7 +117,7 @@ Vue.component('home', {
                 }
             });
             
-            Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/riegl/retz/cloud.js", "Retz", function(e){
+            Potree.loadPointCloud("https://5.9.65.151/mschuetz/potree/resources/pointclouds/riegl/retz/cloud.js", "Retz", function(e){
                 let scene = viewer.scene;
                 
                 scene.addPointCloud(e.pointcloud);
@@ -369,7 +369,7 @@ Vue.component('home', {
             }
 		});
 
-        Potree.loadPointCloud("http://localhost:2021/data/"+id+"/cloud.js", "lion", function(e){
+        Potree.loadPointCloud(BC.config.api+"/data/"+id+"/cloud.js", "lion", function(e){
             viewer.scene.addPointCloud(e.pointcloud);
             
             let material = e.pointcloud.material;
