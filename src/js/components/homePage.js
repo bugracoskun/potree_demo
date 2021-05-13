@@ -117,7 +117,7 @@ Vue.component('home', {
                 }
             });
             
-            Potree.loadPointCloud("https://5.9.65.151/mschuetz/potree/resources/pointclouds/riegl/retz/cloud.js", "Retz", function(e){
+            Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/riegl/retz/cloud.js", "Retz", function(e){
                 let scene = viewer.scene;
                 
                 scene.addPointCloud(e.pointcloud);
