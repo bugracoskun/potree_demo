@@ -61,7 +61,7 @@ BC.samples=[
 
 $(document).ready(function main() {
   //home.$children[0].openlocal();
-  home.$children[0].open(4);
+  home.$children[0].open(1);
   $('#loading').hide();
 });
 
