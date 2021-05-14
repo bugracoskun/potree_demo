@@ -1,7 +1,7 @@
 var BC = {};
 
 BC.config = {
-  development:false,
+  development:true,
   api:"",
   frontend:""
 };

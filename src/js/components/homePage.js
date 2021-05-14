@@ -370,17 +370,27 @@ Vue.component('home', {
 		});
 
         Potree.loadPointCloud(BC.config.api+"/data/"+id+"/cloud.js", "lion", function(e){
-            viewer.scene.addPointCloud(e.pointcloud);
-            
-            let material = e.pointcloud.material;
+
+            let scene = viewer.scene;
+            let pointcloud = e.pointcloud;
+
+            let material = pointcloud.material;
             material.size = 1;
             material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-            
-            e.pointcloud.position.x += 3;
-            e.pointcloud.position.y -= 3;
-            e.pointcloud.position.z += 4;
-            
+            material.shape = Potree.PointShape.SQUARE;
+
+            let hasRGBA = pointcloud.getAttributes().attributes.find(a => a.name === "rgba") !== undefined
+            if(hasRGBA){
+                pointcloud.material.activeAttributeName = "rgba";
+            }else{
+                pointcloud.material.activeAttributeName = "classification";
+            }
+
+            scene.addPointCloud(pointcloud);
             viewer.fitToScreen();
+
+            
+            viewer.zoomTo(e.pointcloud);
         });
       }
   },
