@@ -10,7 +10,7 @@ if(BC.config.development){
   BC.config.api="http://localhost:2021";
   BC.config.frontend="http://localhost:1003";
 }else{
-  BC.config.api="https://api-potree.herokuapp.com";
+  BC.config.api="https://c2cb25425eeb.ngrok.io";
   BC.config.frontend="https://bugracoskun.github.io/potree_demo";
 }
 
