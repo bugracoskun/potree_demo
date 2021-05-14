@@ -66,9 +66,6 @@ $(document).ready(function main() {
 });
 
 function sendFile(){
-  var filetext = document.getElementById("selectfile");
-  filetext.value=file_name;
-
   if(file!=""){
     $('#loading').show();
     mypanel.close();
@@ -115,14 +112,18 @@ function selectFile(){
     files = e.target.files;
     file_name=files[0].name.split(".")[0];
 
+    var filetext = document.getElementById("selectfile");
+    filetext.value=file_name;
+
     console.log(file_name);
 
     var reader = new FileReader();
     
     reader.addEventListener("load", function (e) {
       file=reader.result;
-      //download(reader.result, "deneme.las", "text/plain");
+      $('#loading').hide();
     }, false);
+    $('#loading').show();
     reader.readAsDataURL(files[0]);
   })
 }
