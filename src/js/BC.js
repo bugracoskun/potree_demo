@@ -66,7 +66,8 @@ $(document).ready(function main() {
 });
 
 function sendFile(){
-  //var path = document.getElementById("pathstring").value;
+  var filetext = document.getElementById("selectfile");
+  filetext.value=file_name;
 
   if(file!=""){
     $('#loading').show();
@@ -103,7 +104,7 @@ function sendFile(){
 }
 
 var file=null;
-var file_name="";
+var file_name="File Didn't Select";
 
 function selectFile(){
   var fileElement = document.createElement('input');
@@ -140,7 +141,7 @@ BC.addfile=function() {
     headerTitle: 'Add File Panel',
     position: 'center 50 50',
     content: '<div style="width: 100%; text-align: center; padding-top: 20px;">Please select a las file from your computer.</div>'+
-             '<div style="width: 100%; text-align:center; padding-top: 20px;"><button onclick="selectFile()" class="ui button">Add File</button> - '+file_name+'</div>'+
+             '<div id="selectfile" style="width: 100%; text-align:center; padding-top: 20px;"><button onclick="selectFile()" class="ui button">Add File</button> - '+file_name+'</div>'+
              '<div style="width: 100%; text-align: center; padding-top: 20px;"><button onclick="sendFile()" style="width: 150px;" class="ui inverted green button">ADD</button></div>',
     contentSize: {width:'300px', height:'250px'},
     resizeit: {
