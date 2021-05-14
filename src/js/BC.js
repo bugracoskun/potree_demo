@@ -66,9 +66,9 @@ $(document).ready(function main() {
 });
 
 function sendFile(){
-  var path = document.getElementById("pathstring").value; // name
+  //var path = document.getElementById("pathstring").value;
 
-  if(path!=""){
+  if(file!=""){
     $('#loading').show();
     mypanel.close();
     mypanel=null;
@@ -98,7 +98,7 @@ function sendFile(){
       }
     });
   }else{
-    alert("Please Enter Path!");
+    alert("Please Select a LAS File!");
   }
 }
 
@@ -123,8 +123,6 @@ function selectFile(){
       //download(reader.result, "deneme.las", "text/plain");
     }, false);
     reader.readAsDataURL(files[0]);
-    
-    
   })
 }
 
@@ -141,9 +139,8 @@ BC.addfile=function() {
     theme: 'primary',
     headerTitle: 'Add File Panel',
     position: 'center 50 50',
-    content: '<div style="width: 100%; text-align: center; padding-top: 20px;">Please write your las file path in your computer.</div>'+
-             '<div style="width: 100%; text-align:center; padding-top: 20px;"><div class="ui input"><input id="pathstring" type="text" placeholder=".LAS File Path"></div></div>'+
-             '<div style="width: 100%; text-align:center; padding-top: 20px;"><button onclick="selectFile()" class="ui button">Add File</button> - File</div>'+
+    content: '<div style="width: 100%; text-align: center; padding-top: 20px;">Please select a las file from your computer.</div>'+
+             '<div style="width: 100%; text-align:center; padding-top: 20px;"><button onclick="selectFile()" class="ui button">Add File</button> - '+file_name+'</div>'+
              '<div style="width: 100%; text-align: center; padding-top: 20px;"><button onclick="sendFile()" style="width: 150px;" class="ui inverted green button">ADD</button></div>',
     contentSize: {width:'300px', height:'250px'},
     resizeit: {
