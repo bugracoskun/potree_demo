@@ -8,7 +8,7 @@
   display: block;
   opacity: 0.9;
   background-color: #fff;
-  z-index: 99;
+  z-index: 9999999;
   text-align: center;
 }
 

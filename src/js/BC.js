@@ -17,10 +17,10 @@ if(BC.config.development){
 BC.api={
   domain:BC.config.api,
   routes:{
-    "addfile":"/api/addfile",
+    "addfile":"/addfile",
   },
   sendrequest:function(obj,callback){
-    debugger;
+    //debugger;
     if(obj.url){
       var url=this.domain+obj.url;
     }else{
@@ -43,8 +43,11 @@ BC.api={
           }
       },
       error: function(err){
+        $('#loading').hide();
           if(err.status==404){
             alert("API Error!")
+          }else{
+            alert("ERROR")
           }
       }
     })
@@ -66,11 +69,12 @@ $(document).ready(function main() {
 });
 
 function sendFile(){
-  if(file!=""){
+  if(file!=null){
     $('#loading').show();
     mypanel.close();
     mypanel=null;
 
+    /*
     var settings = {
       "url": BC.config.api+"/addfile",
       "method": "POST",
@@ -79,7 +83,6 @@ function sendFile(){
         "Content-Type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "path": path,
         "id":Date.now().toString(),
         "file":file,
         "name":file_name
@@ -91,8 +94,27 @@ function sendFile(){
       if(response.status){
         // Open local file
         home.$children[0].openlocal(response.data.id);
+        file=null;
+        file_name="File Didn't Select";
       }else{
         alert("Hata Meydana Geldi");
+      }
+    });*/
+    var data={
+      "id":Date.now().toString(),
+      "file":file,
+      "name":file_name
+    };
+    BC.api.sendrequest({type:"POST",route:"addfile",data:data},function(res){
+      $('#loading').hide();
+      if(res.status){
+        // Open local file
+        home.$children[0].openlocal(res.data.id);
+        file=null;
+        file_name="File Didn't Select";
+      }else{
+        alert("Hata Meydana Geldi");
+        $('#loading').hide();
       }
     });
   }else{
@@ -113,9 +135,7 @@ function selectFile(){
     file_name=files[0].name.split(".")[0];
 
     var filetext = document.getElementById("selectfile");
-    filetext.value=file_name;
-
-    console.log(file_name);
+    filetext.innerHTML = file_name;
 
     var reader = new FileReader();
     
@@ -142,7 +162,7 @@ BC.addfile=function() {
     headerTitle: 'Add File Panel',
     position: 'center 50 50',
     content: '<div style="width: 100%; text-align: center; padding-top: 20px;">Please select a las file from your computer.</div>'+
-             '<div id="selectfile" style="width: 100%; text-align:center; padding-top: 20px;"><button onclick="selectFile()" class="ui button">Add File</button> - '+file_name+'</div>'+
+             '<div style="width: 100%; text-align:center; padding-top: 20px;"><button onclick="selectFile()" class="ui button">Add File</button> <div id="selectfile" style="padding-top: 5px;">'+file_name+'</div></div>'+
              '<div style="width: 100%; text-align: center; padding-top: 20px;"><button onclick="sendFile()" style="width: 150px;" class="ui inverted green button">ADD</button></div>',
     contentSize: {width:'300px', height:'250px'},
     resizeit: {
@@ -150,50 +170,13 @@ BC.addfile=function() {
     },
     onclosed: function(panel, closedByUser) {
       mypanel=null;
+      //file=null;
+      //file_name="File Didn't Select";
     },
     callback: function(panel) {
         // do it
     }
   });
-  /*
-  var fileElement = document.createElement('input');
-  fileElement.type='file';
-  fileElement.accept = '.las';
-  fileElement.click();
-  fileElement.addEventListener('change',function(e){
-    var file    = e.target.files;
-    var reader = new FileReader();
-    reader.addEventListener("load", function (e) {
-      console.log(reader.result);
-      //download(reader.result, "deneme.las", "text/plain");
-    }, false);
-    reader.readAsText(file[0]);
-  */
-
-    /*
-    var settings = {
-      "url": "http://localhost:2021/addfile",
-      "method": "POST",
-      "timeout": 0,
-      "headers": {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      "data": {
-        "path": tmppath
-      }
-    };
-    
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-    });
-    */
-    
-    
-    
-    //BC.api.sendrequest({type:"POST",route:"addfile",data:{path:tmppath}},function(res){
-    //  console.log(res);
-    //})
-  //});
 }
 
 BC.openProject=function(id){

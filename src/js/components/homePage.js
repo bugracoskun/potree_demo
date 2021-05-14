@@ -35,7 +35,7 @@ Vue.component('home', {
 		viewer.setPointBudget(1_000_000);
 		viewer.loadSettingsFromURL();
 		
-		viewer.setDescription("Loading Octree of LAS files");
+		viewer.setDescription("Shown Project:"+" "+that.sample.name);
 
         viewer.loadGUI(() => {
 			viewer.setLanguage('en');
@@ -336,7 +336,7 @@ Vue.component('home', {
 		viewer.setPointBudget(1_000_000);
 		viewer.loadSettingsFromURL();
 		
-		viewer.setDescription("Loading Octree of LAS files");
+		viewer.setDescription("Local Project is Showing");
 
         viewer.loadGUI(() => {
 			viewer.setLanguage('en');
