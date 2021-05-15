@@ -148,7 +148,7 @@
 	"pointclouds": [
 		{
 			"name": "sigeom.sa",
-			"url": "pointclouds/vol_total/cloud.js",
+			"url": "potree_demo/pointclouds/vol_total/cloud.js",
 			"position": [
 				589500,
 				231300,
