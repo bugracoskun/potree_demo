@@ -502,7 +502,7 @@ Vue.component('home', {
             }
 		});
 
-        Potree.loadPointCloud(BC.config.api+"/data/"+id+"/cloud.js", "lion", function(e){
+        Potree.loadPointCloud(BC.config.api+"/data/"+id+"/cloud.js", "Local File", function(e){
 
             let scene = viewer.scene;
             let pointcloud = e.pointcloud;
@@ -512,18 +512,12 @@ Vue.component('home', {
             material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
             material.shape = Potree.PointShape.SQUARE;
 
-            let hasRGBA = pointcloud.getAttributes().attributes.find(a => a.name === "rgba") !== undefined
-            if(hasRGBA){
-                pointcloud.material.activeAttributeName = "rgba";
-            }else{
-                pointcloud.material.activeAttributeName = "classification";
-            }
+            pointcloud.material.activeAttributeName = "intensity";
 
             scene.addPointCloud(pointcloud);
             viewer.fitToScreen();
 
-            
-            viewer.zoomTo(e.pointcloud);
+            //viewer.zoomTo(e.pointcloud);
         });
       }
   },
