@@ -57,9 +57,9 @@ BC.api={
 BC.samples=[
   {id:1,type:"cloud",name:"Lion Las"},
   {id:2,type:"cloud",name:"Lion"},
-  {id:3,type:"project",name:"Sorvilier"},
-  {id:4,type:"url",name:"Cesium Example"},
-  {id:5,type:"cloud",name:"Hagia Sophia"}
+  {id:3,type:"project",name:"Cesium Sorvilier"},
+  //{id:4,type:"url",name:"Cesium Example"},
+  {id:4,type:"cloud",name:"Hagia Sophia"}
 ]
 
 
